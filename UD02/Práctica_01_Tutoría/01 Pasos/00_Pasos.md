@@ -514,6 +514,8 @@ ssh-ed25519 &lt;contenido_completo_de_la_clave_publica&gt; usuario@equipo</pre>
 
 En GitHub, vamos a **Settings > SSH and GPG keys > New SSH key**, ponemos un título para identificar el equipo y pegamos esa línea completa. Nunca pegamos ni compartimos la clave privada. Completa cualquier confirmación adicional que solicite GitHub.
 
+![Formulario de GitHub para añadir una clave SSH de autenticación](imagenes/github-anadir-clave-ssh.png)
+
 Al conectar por primera vez, verifica la identidad del servidor antes de aceptar su clave. Después comprobamos la autenticación:
 
 Si la clave aún no está añadida o no corresponde a la cuenta, veremos un error como este:
@@ -560,11 +562,23 @@ To github.com:USUARIO/NOMBRE_REPOSITORIO.git
  * [new branch]      main -&gt; main
 rama 'main' configurada para hacer seguimiento a 'origin/main'.</pre>
 
+Después de un envío correcto, abrimos la lista de repositorios de GitHub: el proyecto aparece como actualizado.
+
+![Repositorio de la tienda actualizado tras el primer push](imagenes/github-repositorio-actualizado.png)
+
+Al entrar en el repositorio, comprobamos que la rama `main` contiene los archivos y el historial que acabamos de subir.
+
+![Archivos y commits de la tienda publicados en GitHub](imagenes/github-archivos-tras-push.png)
+
 Si el `push` termina con «Could not read from remote repository», no se ha subido el repositorio. Comprueba que el repositorio existe, que la URL es correcta y que la clave pública está añadida a la cuenta con permisos de acceso.
 
 ### 3. Clonar un repositorio
 
 Para descargar un repositorio existente usamos `git clone` con su dirección SSH:
+
+En la página del repositorio, el botón **Code** permite copiar la dirección de clonación seleccionando **SSH**. En el ejemplo real se utiliza otro proyecto, `OneMoreCoffee`; debemos tener permiso de acceso si el repositorio es privado.
+
+![Página del repositorio OneMoreCoffee con el botón Code para obtener su dirección](imagenes/github-repositorio-para-clonar.png)
 
 Git crea una carpeta con el nombre del repositorio y descarga su historial y archivos. La salida puede variar; por ejemplo:
 
@@ -628,6 +642,12 @@ To github.com:USUARIO/NOMBRE_REPOSITORIO.git
 
 La etiqueta aparece en GitHub en la sección **Tags** del repositorio. Desde allí se puede consultar el commit asociado y descargar su código fuente como archivo ZIP o TAR. Si necesitamos publicar una versión con notas, también podemos crear una *release* basada en esa etiqueta.
 
+![Repositorio de la tienda con una etiqueta publicada en GitHub](imagenes/github-etiqueta-publicada.png)
+
+Al abrir `v0.1`, encontramos su descripción y los enlaces de descarga del código correspondiente a esa versión:
+
+![Detalle de la etiqueta v0.1 con descargas del código en ZIP y TAR.GZ](imagenes/github-descargar-version-etiquetada.png)
+
 ### 3. Documentar el proyecto con `README.md`
 
 `README.md` describe el proyecto y aparece en la página principal del repositorio. Se puede crear desde GitHub con **Add file > Create new file** o en el equipo con un editor. Por ejemplo:
@@ -656,6 +676,14 @@ git clone git@github.com:USUARIO/NOMBRE_REPOSITORIO.git
 | `index.html` | Página principal |
 | `style.css` | Hoja de estilos |
 ~~~
+
+En el editor web de GitHub escribimos el contenido de `README.md`. La pestaña **Preview** permite revisar cómo se verá antes de guardarlo.
+
+![Edición de README.md en GitHub con las secciones del proyecto](imagenes/github-editar-readme.png)
+
+Después pulsamos **Commit changes**, indicamos un mensaje descriptivo y confirmamos. En el ejemplo se elige guardar directamente en `main`; la otra opción permite crear una rama y proponer los cambios mediante una *pull request*.
+
+![Diálogo de GitHub para confirmar la creación de README.md en main](imagenes/github-confirmar-readme.png)
 
 Si lo creamos en el equipo, lo añadimos al repositorio y lo subimos como cualquier otro cambio:
 
