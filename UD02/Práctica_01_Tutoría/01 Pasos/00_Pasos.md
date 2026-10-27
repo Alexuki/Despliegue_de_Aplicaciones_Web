@@ -2,6 +2,8 @@
 
 ## Parte 1: Configuración y creación del repositorio
 
+En las transcripciones, la línea verde con el símbolo `$` representa el comando escrito. La respuesta aparece a continuación, sin prompt y en gris, salvo los colores propios de Git. Los bloques `bash` que no tienen una salida asociada se mantienen como comandos copiables.
+
 ### 1. Configurar Git
 
 La configuración global (`--global`) se guarda en `~/.gitconfig` y se aplica a todos los repositorios del equipo.
@@ -20,55 +22,41 @@ La configuración global (`--global`) se guarda en `~/.gitconfig` y se aplica a 
    git config --global init.defaultBranch main
    ```
 4. **Comprobar la configuración** con `--list`:
-   ```bash
-   git config --list
-   ```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#ce9178">user.name=Nombre Apellido</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git config --list</span>
+<span style="color:#ce9178">user.name=Nombre Apellido</span>
 <span style="color:#ce9178">user.email=correo@ejemplo.net</span>
 <span style="color:#ce9178">color.ui=auto</span>
 <span style="color:#ce9178">init.defaultbranch=main</span></pre>
-</div>
 
 ### 2. Crear la carpeta del proyecto
 
 Creamos la carpeta `repos/tienda` para el proyecto de la tienda online.
 
-```bash
-cd Documentos
-mkdir -p repos/tienda
-cd repos/tienda
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#4ec9b0">user@MintBase</span>:<span style="color:#569cd6">~/Documentos/repos/tienda</span>
-Directorio de trabajo preparado.</pre>
-</div>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ cd Documentos</span>
+<span style="color:#89d185">$ mkdir -p repos/tienda</span>
+<span style="color:#89d185">$ cd repos/tienda</span>
+</pre>
 
 ### 3. Inicializar el repositorio
 
 `git init` convierte la carpeta en un repositorio (crea la carpeta oculta `.git`). Con `git status` vemos el estado: estamos en la rama `main` y todavía no hay commits.
 
-```bash
-git init
-ls -a
-git status
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">Repositorio Git vacío inicializado.
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git init</span>
+Repositorio Git vacío inicializado.
+<span style="color:#89d185">$ ls -a</span>
 <span style="color:#569cd6">.  ..  .git</span>
+<span style="color:#89d185">$ git status</span>
 En la rama <span style="color:#6a9955">main</span>
 Todavía no hay commits.</pre>
-</div>
 
 ### 4. Crear `index.html`
 
 Creamos la página principal de la tienda con `nano index.html`.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#6a9955">&lt;!DOCTYPE html&gt;</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#6a9955">&lt;!DOCTYPE html&gt;</span>
 &lt;html lang="es"&gt;
    &lt;head&gt;
       &lt;meta charset="utf-8"&gt;
@@ -78,94 +66,72 @@ Creamos la página principal de la tienda con `nano index.html`.
       &lt;h1&gt;Tienda Online&lt;/h1&gt;
    &lt;/body&gt;
 &lt;/html&gt;</pre>
-</div>
 
 ### 5. Añadir el archivo al área de preparación (staging)
 
 `git status` muestra `index.html` en rojo como **archivo sin seguimiento**: Git lo ve, pero no lo controla todavía.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">En la rama main
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git status</span>
+En la rama main
 Archivos sin seguimiento:
-   <span style="color:#ce9178">index.html</span></pre>
-</div>
+   <span style="color:#d4d4d4">index.html</span></pre>
 
 Con `git add` lo pasamos al área de preparación (*staging*) y ya aparece en verde como "cambios a ser confirmados".
 
-```bash
-git add index.html
-git status
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">Cambios preparados para el commit:
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git add index.html</span>
+<span style="color:#89d185">$ git status</span>
+Cambios preparados para el commit:
    <span style="color:#6a9955">nuevo archivo: index.html</span></pre>
-</div>
 
 ### 6. Primer commit
 
 El commit guarda los cambios en el repositorio **local**, con un mensaje que describe lo que se ha hecho. (Para enviarlo a un servidor remoto se usaría `git push`.)
 
-```bash
-git commit -m "Añadimos el landing page de nuestra tienda"
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[main <span style="color:#dcdcaa">31c3078</span>] Añadimos el landing page de nuestra tienda
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git commit -m &quot;Añadimos el landing page de nuestra tienda&quot;</span>
+[main <span style="color:#dcdcaa">31c3078</span>] Añadimos el landing page de nuestra tienda
  1 file changed, 13 insertions(+)
  create mode 100644 index.html</pre>
-</div>
 
 ### 7. Ver el historial
 
 `git log` muestra los commits: su identificador (hash), autor, fecha y mensaje. `HEAD -> main` indica el commit en el que estamos.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">Author: Nombre Apellido &lt;correo@ejemplo.net&gt;
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git log</span>
+Author: Nombre Apellido &lt;correo@ejemplo.net&gt;
 Date: 2026-10-13
 <span style="color:#4ec9b0">HEAD -&gt; main</span> apunta al commit actual.</pre>
-</div>
 
 ### 8. Modificar un archivo y ver las diferencias
 
 Cambiamos el título de la página a "Tienda Online de Deportes".
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#6a9955">&lt;h1&gt;</span>Tienda Online de Deportes<span style="color:#6a9955">&lt;/h1&gt;</span></pre>
-</div>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#6a9955">&lt;h1&gt;</span>Tienda Online de Deportes<span style="color:#6a9955">&lt;/h1&gt;</span></pre>
 
 `git diff` muestra las diferencias entre el archivo modificado y la última versión guardada. Gracias a `color.ui auto`, las líneas eliminadas salen en rojo (`-`) y las añadidas en verde (`+`).
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#f48771">-    &lt;title&gt;Tienda Online&lt;/title&gt;</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git diff</span>
+<span style="color:#f48771">-    &lt;title&gt;Tienda Online&lt;/title&gt;</span>
 <span style="color:#89d185">+    &lt;title&gt;Tienda Online de Deportes&lt;/title&gt;</span>
 <span style="color:#f48771">-    &lt;h1&gt;Tienda Online&lt;/h1&gt;</span>
 <span style="color:#89d185">+    &lt;h1&gt;Tienda Online de Deportes&lt;/h1&gt;</span></pre>
-</div>
 
 Tras volver a hacer `git add`, `git diff` queda vacío, porque el cambio ya está en staging. Para ver lo que está preparado y pendiente de confirmar se usa `git diff --staged`.
 
-```bash
-git add index.html
-git diff            # vacío
-git diff --staged   # muestra el cambio preparado
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#569cd6">git diff</span>: sin salida (cambios ya preparados)
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git add index.html</span>
+<span style="color:#89d185">$ git diff            # vacío</span>
+<span style="color:#569cd6">git diff</span>: sin salida (cambios ya preparados)
+<span style="color:#89d185">$ git diff --staged</span>
 <span style="color:#569cd6">git diff --staged</span>: 1 archivo modificado; el cambio de título está preparado.</pre>
-</div>
 
 Confirmamos el cambio:
 
-```bash
-git commit -m "Cambiamos el título de la página"
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[main <span style="color:#dcdcaa">1966088</span>] Cambiamos el título de la página
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git commit -m &quot;Cambiamos el título de la página&quot;</span>
+[main <span style="color:#dcdcaa">1966088</span>] Cambiamos el título de la página
  1 file changed, 2 insertions(+), 2 deletions(-)</pre>
-</div>
 
 ### 9. Ver un commit con `git show`
 
@@ -173,57 +139,45 @@ git commit -m "Cambiamos el título de la página"
 - `git show` mira **hacia atrás**: lo que ya está en el historial.
 - `git diff` mira **hacia delante**: lo que todavía no se ha confirmado.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"> index.html | 4 <span style="color:#89d185">++</span><span style="color:#f48771">--</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git show --stat --oneline HEAD</span>
+ index.html | 4 <span style="color:#89d185">++</span><span style="color:#f48771">--</span>
  1 file changed, 2 insertions(+), 2 deletions(-)</pre>
-</div>
 
 ### 10. Añadir una hoja de estilos
 
 Creamos `style.css` y la enlazamos desde `index.html` con `<link rel="stylesheet" href="style.css">`.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">style.css
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">style.css
 <span style="color:#6a9955">h1</span> {
    background-color: steelblue;
    font-family: Arial, sans-serif;
    color: white;
 }</pre>
-</div>
 
 Añadimos los dos archivos y hacemos commit:
 
-```bash
-git add index.html style.css
-git commit -m "Añadida hoja de estilos"
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[main <span style="color:#dcdcaa">c7f1708</span>] Añadida hoja de estilos
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git add index.html style.css</span>
+<span style="color:#89d185">$ git commit -m &quot;Añadida hoja de estilos&quot;</span>
+[main <span style="color:#dcdcaa">c7f1708</span>] Añadida hoja de estilos
  2 files changed, 5 insertions(+)</pre>
-</div>
 
-Con `git show` vemos los cambios de ese commit en ambos archivos.
+Con `git show` vemos los cambios de ese commit en ambos archivos. Aquí usamos `--stat --format=` para mostrar solo el resumen de archivos modificados:
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"> index.html | 1 <span style="color:#89d185">+</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git show --stat --format= HEAD</span>
+ index.html | 1 <span style="color:#89d185">+</span>
  style.css  | 5 <span style="color:#89d185">+++++</span>
  2 files changed, 6 insertions(+)</pre>
-</div>
 
 ### 11. Ver quién cambió cada línea con `git blame`
 
 `git blame` muestra, para cada línea de un archivo, el commit, el autor y la fecha del último cambio.
 
-```bash
-git blame index.html
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#dcdcaa">c7f1708</span> (Nombre Apellido 2026-10-13) 5) &lt;link rel="stylesheet" href="style.css"&gt;
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git blame index.html</span>
+<span style="color:#dcdcaa">c7f1708</span> (Nombre Apellido 2026-10-13) 5) &lt;link rel="stylesheet" href="style.css"&gt;
 <span style="color:#dcdcaa">1966088</span> (Nombre Apellido 2026-10-13) 6) &lt;title&gt;Tienda Online de Deportes&lt;/title&gt;
 <span style="color:#dcdcaa">31c3078</span> (Nombre Apellido 2026-10-13) 9) &lt;h1&gt;Tienda Online&lt;/h1&gt;</pre>
-</div>
 
 ### 12. Ignorar archivos con `.gitignore`
 
@@ -237,10 +191,8 @@ touch node_modules/paquete.js
 nano node_modules/paquete.js
 ```
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">node_modules/paquete.js
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">node_modules/paquete.js
 <span style="color:#ce9178">API_KEY="valor-ficticio-no-utilizable"</span></pre>
-</div>
 
 Creamos `.gitignore` con `nano .gitignore`. Se suele organizar por bloques:
 - **Dependencias**: `node_modules/`, `vendor/`.
@@ -250,8 +202,7 @@ Creamos `.gitignore` con `nano .gitignore`. Se suele organizar por bloques:
 
 Los directorios se escriben con barra al final. Existen plantillas de `.gitignore` para casos comunes (lenguajes, IDEs...).
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#6a9955"># Dependencias</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#6a9955"># Dependencias</span>
 node_modules/
 vendor/
 
@@ -266,26 +217,20 @@ dist/
 <span style="color:#6a9955"># Sistema operativo y editor</span>
 .DS_Store
 .vscode/</pre>
-</div>
 
 Al hacer `git status` solo aparece `.gitignore`: la carpeta `node_modules` ya no se muestra porque está ignorada.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">Archivos sin seguimiento:
-   <span style="color:#ce9178">.gitignore</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git status</span>
+Archivos sin seguimiento:
+   <span style="color:#d4d4d4">.gitignore</span>
 <span style="color:#6a9955">node_modules/ está ignorado</span></pre>
-</div>
 
-```bash
-git add .gitignore
-git commit -m "Añadido .gitignore del proyecto"
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[main <span style="color:#dcdcaa">1dcff6f</span>] Añadido .gitignore del proyecto
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git add .gitignore</span>
+<span style="color:#89d185">$ git commit -m &quot;Añadido .gitignore del proyecto&quot;</span>
+[main <span style="color:#dcdcaa">1dcff6f</span>] Añadido .gitignore del proyecto
  1 file changed, 16 insertions(+)
  create mode 100644 .gitignore</pre>
-</div>
 
 ---
 
@@ -297,75 +242,53 @@ Hasta aquí la configuración del repositorio. Ahora veremos funcionalidades par
 
 Añadimos una línea errónea al final de `index.html`:
 
-```bash
-echo "linea de codigo errónea" >> index.html
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">Línea añadida al final de index.html:
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ echo &quot;linea de codigo errónea&quot; &gt;&gt; index.html</span>
 <span style="color:#ce9178">linea de codigo errónea</span></pre>
-</div>
 
 `git status` muestra el archivo como modificado y sugiere `git restore` para descartar los cambios.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">Cambios no preparados:
-   <span style="color:#ce9178">modificado: index.html</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#89d185">$ git status</span>
+Cambios no preparados:
+   <span style="color:#d4d4d4">modificado: index.html</span>
 <span style="color:#6a9955">git restore puede descartar estos cambios</span></pre>
-</div>
 
-`git restore` devuelve el archivo a su estado del último commit (si el cambio estuviera en staging, con `git restore --staged` lo sacaríamos del área de preparación).
+`git restore` devuelve el archivo a su estado del último commit sin mostrar una respuesta si termina correctamente (si el cambio estuviera en staging, con `git restore --staged` lo sacaríamos del área de preparación).
 
-```bash
-git restore index.html
-```
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git restore index.html</span></pre>
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">index.html restaurado al contenido del último commit.
-<span style="color:#6a9955">La línea errónea ya no está presente.</span></pre>
-</div>
+El comando no imprime nada si se completa correctamente; la línea errónea desaparece del archivo.
 
 ### 2. Corregir el mensaje del último commit con `--amend`
 
 Añadimos un comentario con el autor y hacemos commit. Con `-a` se añaden automáticamente todos los archivos ya seguidos que estén modificados, sin necesidad de `git add`.
 
-```bash
-echo '<!-- autor: nombre -->' >> index.html
-git commit -a -m "Añade el autor y su correo"
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[main <span style="color:#dcdcaa">da4e8d9</span>] Añade el autor y su correo
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ echo &#x27;&lt;!-- autor: nombre --&gt;&#x27; &gt;&gt; index.html</span>
+<span style="color:#89d185">$ git commit -a -m &quot;Añade el autor y su correo&quot;</span>
+[main <span style="color:#dcdcaa">da4e8d9</span>] Añade el autor y su correo
  1 file changed, 1 insertion(+)</pre>
-</div>
 
 El mensaje no es correcto (no se ha añadido ningún correo), así que lo editamos con `--amend`, que reemplaza el último commit por uno nuevo (cambia su hash):
 
-```bash
-git commit --amend -m "Añade el autor"
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[main <span style="color:#dcdcaa">c26e040</span>] Añade el autor
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git commit --amend -m &quot;Añade el autor&quot;</span>
+[main <span style="color:#dcdcaa">c26e040</span>] Añade el autor
  1 file changed, 1 insertion(+)
 <span style="color:#6a9955">El commit anterior fue reemplazado por uno con un hash nuevo.</span></pre>
-</div>
 
 ### 3. Volver atrás con `git reset`
 
-`git log --oneline` muestra el historial resumido. `HEAD` es el commit donde estamos y con `HEAD~n` nos referimos a `n` commits atrás (con `~`, no con `-`: `HEAD-1` da error).
+`git log --oneline` muestra el historial resumido. `HEAD` es el commit donde estamos y con `HEAD~n` nos referimos a `n` commits atrás (se escribe con `~`, no con `-`).
 
-```bash
-git log --oneline
-git reset --soft HEAD~1
-git reset --soft HEAD~2
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#f48771">fatal: argumento ambiguo 'HEAD-1'</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git log --oneline</span>
+<span style="color:#89d185">$ git reset --soft HEAD-1</span>
+<span style="color:#f48771">fatal: argumento ambiguo 'HEAD-1'</span>
 Usa <span style="color:#6a9955">HEAD~1</span> para referirte al commit anterior.
+<span style="color:#89d185">$ git reset --soft HEAD~1</span>
 Después de <span style="color:#569cd6">git reset --soft HEAD~1</span>, los cambios permanecen en staging.</pre>
-</div>
 
 - `--soft`: deshace el commit pero conserva los cambios en staging.
 - `--hard`: deshace el commit y **borra** el trabajo.
@@ -384,31 +307,23 @@ Con `ls -a` podemos ver también los archivos y directorios ocultos. En la raíz
 
 La opción `--graph` representa las ramas y los commits como un grafo. Combinada con `--oneline`, `--decorate`, `--color` y `--all`, permite consultar de forma compacta el historial de todas las ramas:
 
-```bash
-git log --oneline --all --graph --decorate --color
-```
-
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#4ec9b0">* (HEAD -&gt; main)</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git log --oneline --all --graph --decorate --color</span>
+<span style="color:#4ec9b0">* (HEAD -&gt; main)</span>
 <span style="color:#4ec9b0">* ...</span>
 <span style="color:#6a9955">Se omiten los commits ya descritos para evitar repetir sus mensajes.</span></pre>
-</div>
 
 ### 2. Crear un alias para el historial
 
 Un alias permite crear un nombre corto para un comando que usamos con frecuencia. Este alias global se llamará `hist` y ejecutará el comando anterior:
 
-```bash
-git config --global alias.hist "log --oneline --graph --decorate --color --all"
-git hist
-```
-
 Los alias de Git se ejecutan como subcomandos: se escribe `git` seguido del nombre del alias.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#4ec9b0">* main</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git config --global alias.hist &quot;log --oneline --graph --decorate --color --all&quot;</span>
+<span style="color:#89d185">$ git hist</span>
+<span style="color:#4ec9b0">* main</span>
 <span style="color:#4ec9b0">* feature/carrito</span> <span style="color:#6a9955">rama activa</span></pre>
-</div>
 
 ### 3. Crear una rama para una funcionalidad
 
@@ -429,16 +344,12 @@ nano carrito.js
 
 Añadimos el archivo al área de preparación y confirmamos el cambio:
 
-```bash
-git add carrito.js
-git commit -m "Añadimos el carrito a la compra"
-git hist
-```
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git add carrito.js</span>
+<span style="color:#89d185">$ git commit -m &quot;Añadimos el carrito a la compra&quot;</span>
+<span style="color:#89d185">$ git status --short</span></pre>
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap">[feature/carrito] Añadimos el carrito a la compra
-Commit creado en la rama de funcionalidad.</pre>
-</div>
+Si `git status --short` no muestra salida, no quedan cambios pendientes en el árbol de trabajo.
 
 > `git add carrito.js` no quita del área de preparación otros cambios que ya estuvieran preparados. Como en el apartado anterior usamos `git reset --soft`, el commit puede incluir también esos cambios pendientes. Comprueba `git status` antes de confirmar si quieres que el commit contenga únicamente `carrito.js`.
 
@@ -446,22 +357,18 @@ Commit creado en la rama de funcionalidad.</pre>
 
 Al volver a `main`, `carrito.js` no aparece porque ese archivo solo se ha creado en `feature/carrito`. Al cambiar de nuevo a esa rama, vuelve a aparecer:
 
-```bash
-git switch main
-ls
-git switch feature/carrito
-ls
-```
-
 Las ramas comparten el historial común, pero cada una puede mostrar una versión distinta de los archivos.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#569cd6">En main:</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git switch main</span>
+Cambiado a la rama 'main'
+<span style="color:#89d185">$ ls</span>
 index.html  node_modules/  style.css
 
-<span style="color:#569cd6">En feature/carrito:</span>
+<span style="color:#89d185">$ git switch feature/carrito</span>
+Cambiado a la rama 'feature/carrito'
+<span style="color:#89d185">$ ls</span>
 carrito.js  index.html  node_modules/  style.css</pre>
-</div>
 
 ### 6. Crear una rama para corregir un error
 
@@ -534,29 +441,25 @@ Mientras tanto, hacemos otro cambio en `main` sobre esa misma línea:
 git switch main
 sed -i 's/Deportes Strong/Deportes Lolita/' index.html
 git commit -a -m "Cambio a Deportes Lolita"
-git merge cambio-a
 ```
 
 Como ambas ramas modificaron la misma línea de forma distinta, Git no puede decidir qué versión conservar. La fusión se detiene y `git status` identifica `index.html` como archivo en conflicto:
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#4ec9b0">user@MintBase</span>:<span style="color:#569cd6">~/Documentos/repos/tienda</span>$ git merge cambio-a
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git merge cambio-a</span>
 Auto-fusionando index.html
 CONFLICTO (contenido): Conflicto de fusión en index.html
 La fusión automática falló; arregle los conflictos y luego realice un commit con el resultado.
-<span style="color:#4ec9b0">user@MintBase</span>:<span style="color:#569cd6">~/Documentos/repos/tienda</span>$ git status --short
+<span style="color:#89d185">$ git status --short</span>
 UU index.html</pre>
-</div>
 
 Abre `index.html` en un editor de texto, no en el navegador. Git inserta estos marcadores en el archivo para señalar las dos versiones en conflicto. `HEAD` identifica el contenido de la rama actual (`main`); después de `=======` aparece la versión de `cambio-a`. Los signos `-` y `+` no forman parte del archivo: son propios de una salida de `git diff`.
 
-<div style="background:#1e1e1e;color:#d4d4d4;padding:0.8em 1em;border-radius:6px;overflow-x:auto">
-<pre style="margin:0;white-space:pre-wrap"><span style="color:#ce9178">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap"><span style="color:#ce9178">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
    &lt;h1&gt;Deportes Lolita&lt;/h1&gt;
 <span style="color:#d4d4d4">=======</span>
    &lt;h1&gt;Deportes Fit&lt;/h1&gt;
 <span style="color:#6a9955">&gt;&gt;&gt;&gt;&gt;&gt;&gt; cambio-a</span></pre>
-</div>
 
 Editamos el archivo, elegimos el contenido final y quitamos todos los marcadores. En este ejemplo conservamos `Deportes Lolita`. Después marcamos el conflicto como resuelto y completamos el commit de fusión:
 
@@ -576,40 +479,190 @@ Hasta ahora el repositorio es local: si el equipo falla, podríamos perder el tr
 
 Generamos un par de claves Ed25519. El comentario ayuda a identificar la clave; se recomienda proteger la clave privada con una frase de contraseña. No compartas el archivo privado `~/.ssh/id_ed25519`.
 
-```bash
-ssh-keygen -t ed25519 -C "usuario@equipo"
-```
-
 - `ssh-keygen` crea y administra pares de claves para autenticarse mediante SSH.
 - `-t ed25519` selecciona Ed25519, un algoritmo moderno de firma digital basado en curvas elípticas. Se usa para demostrar que controlamos la clave privada sin enviarla al servidor.
 - `-C "usuario@equipo"` añade un comentario identificativo a la clave; no es una contraseña ni cambia cómo funciona la clave.
 
 El comando pregunta dónde guardar el par y si queremos proteger la clave privada con una frase de contraseña. Aceptar la ruta predeterminada crea `~/.ssh/id_ed25519` (privada) y `~/.ssh/id_ed25519.pub` (pública). La clave pública se comparte con GitHub; la privada permanece en el equipo.
 
-La clave pública, que sí podemos añadir a GitHub, termina en `.pub`:
+Si la ruta ya existe, `ssh-keygen` pregunta si queremos sobrescribirla. No lo hagas salvo que quieras reemplazar esa clave; puedes indicar otra ruta para conservar la anterior.
 
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
+Al terminar, veremos mensajes similares a estos. Se omiten las preguntas interactivas sobre la ruta y la frase de contraseña:
 
-En GitHub, vamos a **Settings > SSH and GPG keys > New SSH key**, ponemos un nombre para identificar el equipo y pegamos el contenido de la clave pública. Nunca pegamos ni compartimos la clave privada.
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ ssh-keygen -t ed25519 -C &quot;usuario@equipo&quot;</span>
+Your identification has been saved in /home/usuario/.ssh/id_ed25519
+Your public key has been saved in /home/usuario/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:&lt;huella_de_la_clave&gt; usuario@equipo</pre>
+
+Para consultar la huella más adelante podemos usar `ssh-keygen -lf ~/.ssh/id_ed25519.pub`:
+
+La salida tendrá un aspecto similar a este:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ ssh-keygen -lf ~/.ssh/id_ed25519.pub</span>
+256 SHA256:&lt;huella_de_la_clave&gt; usuario@equipo (ED25519)</pre>
+
+La huella SHA256 sirve para identificar la clave, pero **no es la clave pública** que se pega en GitHub. Para mostrar la clave pública completa usamos el archivo que termina en `.pub`:
+
+El resultado es una línea larga; en este ejemplo se omite su contenido:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ cat ~/.ssh/id_ed25519.pub</span>
+ssh-ed25519 &lt;contenido_completo_de_la_clave_publica&gt; usuario@equipo</pre>
+
+En GitHub, vamos a **Settings > SSH and GPG keys > New SSH key**, ponemos un título para identificar el equipo y pegamos esa línea completa. Nunca pegamos ni compartimos la clave privada. Completa cualquier confirmación adicional que solicite GitHub.
+
+Al conectar por primera vez, verifica la identidad del servidor antes de aceptar su clave. Después comprobamos la autenticación:
+
+Si la clave aún no está añadida o no corresponde a la cuenta, veremos un error como este:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ ssh -T git@github.com</span>
+git@github.com: Permission denied (publickey).</pre>
+
+Cuando GitHub reconoce la clave, la respuesta es similar a esta:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ ssh -T git@github.com</span>
+Hi USUARIO! You've successfully authenticated, but GitHub does not provide shell access.</pre>
 
 ### 2. Añadir el remoto y subir `main`
 
-Creamos primero un repositorio vacío en GitHub y copiamos su dirección SSH. Sustituimos `USUARIO` por el nombre de la cuenta:
+Creamos primero el repositorio en GitHub y copiamos su dirección SSH. El nombre del repositorio remoto no tiene por qué coincidir con el nombre de la carpeta local; lo importante es que la dirección corresponda al repositorio correcto y tengamos acceso. Sustituimos `USUARIO` y `NOMBRE_REPOSITORIO` por los valores propios:
+
+`git branch --show-current` permite comprobar que estamos en `main`. Si `git remote -v` no muestra ningún remoto, añadimos `origin`; si ya muestra uno, comprobamos que su dirección sea la correcta y no lo añadimos de nuevo:
+
+`origin` es el nombre convencional del remoto y `-u` deja configurada la rama remota de seguimiento al hacer el primer `push`. La salida de `git remote -v` es similar a esta:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git remote add origin git@github.com:USUARIO/NOMBRE_REPOSITORIO.git</span>
+<span style="color:#89d185">$ git remote -v</span>
+origin  git@github.com:USUARIO/NOMBRE_REPOSITORIO.git (fetch)
+origin  git@github.com:USUARIO/NOMBRE_REPOSITORIO.git (push)
+<span style="color:#89d185">$ git branch --show-current</span>
+main</pre>
+
+Subimos la rama principal:
+
+Al terminar el primer envío, Git muestra un resultado parecido a este:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git push -u origin main</span>
+Enumerando objetos: 21, listo.
+Contando objetos: 100% (21/21), listo.
+Compresión delta usando hasta 2 hilos
+Comprimiendo objetos: 100% (18/18), listo.
+Escribiendo objetos: 100% (21/21), listo.
+Total 21 (delta 6), reutilizados 0 (delta 0)
+To github.com:USUARIO/NOMBRE_REPOSITORIO.git
+ * [new branch]      main -&gt; main
+rama 'main' configurada para hacer seguimiento a 'origin/main'.</pre>
+
+Si el `push` termina con «Could not read from remote repository», no se ha subido el repositorio. Comprueba que el repositorio existe, que la URL es correcta y que la clave pública está añadida a la cuenta con permisos de acceso.
+
+### 3. Clonar un repositorio
+
+Para descargar un repositorio existente usamos `git clone` con su dirección SSH:
+
+Git crea una carpeta con el nombre del repositorio y descarga su historial y archivos. La salida puede variar; por ejemplo:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git clone git@github.com:USUARIO/NOMBRE_REPOSITORIO.git</span>
+Clonando en 'NOMBRE_REPOSITORIO'...
+remote: Enumerating objects: 97, done.
+remote: Counting objects: 100% (97/97), done.
+remote: Compressing objects: 100% (76/76), done.
+Recibiendo objetos: 100% (97/97), listo.
+Resolviendo deltas: 100% (15/15), listo.</pre>
+
+Después entramos en la carpeta creada:
 
 ```bash
-git remote add origin git@github.com:USUARIO/tienda_DAWB.git
-git remote -v
-git push -u origin main
+cd NOMBRE_REPOSITORIO
 ```
 
-`origin` es el nombre convencional del remoto y `-u` deja configurada la rama remota de seguimiento para futuros `git push` y `git pull`.
+---
 
-Si el `push` termina con «Could not read from remote repository», no se ha subido el repositorio. Comprueba que el repositorio existe, que la URL corresponde a tu cuenta y que la clave pública está añadida a GitHub con permisos de acceso. También puedes probar la conexión con:
+## Parte 6: Etiquetas y documentación del proyecto
+
+### 1. Crear una etiqueta para una versión
+
+Una etiqueta (*tag*) es un marcador asociado a un commit. Sirve para identificar versiones importantes del proyecto y facilita volver a consultar o descargar el código de ese punto del historial. Tras editar `index.html`, comprobamos que los cambios que queremos incluir estén confirmados: una etiqueta **no** incorpora cambios que sigan sin guardar en un commit. Si se crea antes del commit, apuntará a la versión anterior del archivo.
 
 ```bash
-ssh -T git@github.com
+git status
+git add index.html
+git commit -m "Actualizamos el contenido de la tienda"
+git push origin main
+git tag -a v0.1 -m "Primera versión de la tienda"
+git hist
 ```
 
-Al conectar por primera vez, verifica la identidad del servidor antes de aceptar su clave.
+`-a` crea una etiqueta anotada y `-m` añade su descripción. En el historial, la etiqueta aparece junto al commit al que apunta:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git hist</span>
+<span style="color:#4ec9b0">* (HEAD -&gt; main, tag: v0.1)</span> Actualizamos el contenido de la tienda
+<span style="color:#4ec9b0">* ...</span></pre>
+
+### 2. Subir la etiqueta a GitHub
+
+`git push` no envía automáticamente las etiquetas que creamos después del primer envío. Para publicar `v0.1`, la subimos explícitamente:
+
+```bash
+git push origin v0.1
+```
+
+La salida indica que se ha enviado la etiqueta:
+
+<pre style="display:block;background:#111214;border:1px solid #44474d;color:#d4d4d4;padding:0.55em 0.75em;margin:0.6em 0;border-radius:4px;overflow-x:auto;white-space:pre-wrap">
+<span style="color:#89d185">$ git push origin v0.1</span>
+Enumerando objetos: 1, listo.
+Contando objetos: 100% (1/1), listo.
+Escribiendo objetos: 100% (1/1), listo.
+Total 1 (delta 0), reutilizados 0 (delta 0)
+To github.com:USUARIO/NOMBRE_REPOSITORIO.git
+ * [new tag]         v0.1 -&gt; v0.1</pre>
+
+La etiqueta aparece en GitHub en la sección **Tags** del repositorio. Desde allí se puede consultar el commit asociado y descargar su código fuente como archivo ZIP o TAR. Si necesitamos publicar una versión con notas, también podemos crear una *release* basada en esa etiqueta.
+
+### 3. Documentar el proyecto con `README.md`
+
+`README.md` describe el proyecto y aparece en la página principal del repositorio. Se puede crear desde GitHub con **Add file > Create new file** o en el equipo con un editor. Por ejemplo:
+
+~~~markdown
+# Tienda online de prueba
+
+Tienda estática para probar las funcionalidades de Git.
+
+## Requisitos
+
+- Navegador
+- Editor de código
+- Git 2.30 o superior
+
+## Instalación
+
+```sh
+git clone git@github.com:USUARIO/NOMBRE_REPOSITORIO.git
+```
+
+## Estructura
+
+| Fichero | Descripción |
+| --- | --- |
+| `index.html` | Página principal |
+| `style.css` | Hoja de estilos |
+~~~
+
+Si lo creamos en el equipo, lo añadimos al repositorio y lo subimos como cualquier otro cambio:
+
+```bash
+git add README.md
+git commit -m "Documentamos el proyecto"
+git push origin main
+```
+
+Si editamos `README.md` directamente desde GitHub, el commit se crea en el remoto. Antes de volver a subir desde el equipo, sincronizamos ese commit con `git pull --rebase origin main`.
